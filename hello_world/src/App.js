@@ -18,14 +18,21 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
-  nameChangeHandler = event => {
-    this.setState({
-      persons: [
-        { name: `Max-Changed`, age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: "Baker", age: 27 }
-      ]
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
     });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   };
 
   togglPersonsHandler = event => {
@@ -54,7 +61,7 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
-                changed={this.nameChangeHandler}
+                changed={event => this.nameChangeHandler(event, person.id)}
               >
                 Hobbies: sailing
               </Person>
@@ -67,7 +74,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>First react app.</h1>
-        <button onClick={this.togglPersonsHandler}>Toggle Persons</button>
+        <button onClick={this.togglPersonsHandler} style={style}>Toggle Persons</button>
         {persons}
       </div>
     );
