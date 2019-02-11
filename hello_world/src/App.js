@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium from 'radium';
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
@@ -44,14 +44,14 @@ class App extends Component {
   render() {
     const style = {
       backgroundColor: "green",
-      color: 'white',
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black"
       }
     };
 
@@ -75,29 +75,33 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
+      style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black"
       };
     }
 
     //let classes = ['red', 'bold'].join(' '); //what we get 'red bold'
     const classes = [];
-    if(this.state.persons.length <= 2) {
-      classes.push('red');
+    if (this.state.persons.length <= 2) {
+      classes.push("red");
     }
-    if(this.state.persons.length <=1) {
-      classes.push('bold');
+    if (this.state.persons.length <= 1) {
+      classes.push("bold");
     }
 
     return (
-      <div className="App">
-        <h1>First react app.</h1>
-        <p className={classes.join(' ')}>Dymanic Styling</p>
-        <button onClick={this.togglPersonsHandler} style={style}>Toggle Persons</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>First react app.</h1>
+          <p className={classes.join(" ")}>Dymanic Styling</p>
+          <button onClick={this.togglPersonsHandler} style={style}>
+            Toggle Persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     // let h1Element = React.createElement("h1", null, "First react app.");
     // return React.createElement("div", {className: 'App'}, h1Element);
