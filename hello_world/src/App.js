@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
@@ -92,20 +91,18 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>First react app.</h1>
-          <p className={classes.join(" ")}>Dymanic Styling</p>
-          <button onClick={this.togglPersonsHandler} style={style}>
-            Toggle Persons
+      <div className="App">
+        <h1>First react app.</h1>
+        <p className={classes.join(" ")}>Dymanic Styling</p>
+        <button onClick={this.togglPersonsHandler} style={style}>
+          Toggle Persons
           </button>
-          {persons}
-        </div>
-      </StyleRoot>
+        {persons}
+      </div>
     );
     // let h1Element = React.createElement("h1", null, "First react app.");
     // return React.createElement("div", {className: 'App'}, h1Element);
   }
 }
 
-export default Radium(App);
+export default App;
