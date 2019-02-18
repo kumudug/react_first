@@ -1,9 +1,9 @@
 import React from "react";
-import "./Person.css";
+import styles from "./Person.module.css";
 
 const person = props => {
   return (
-    <div className="Person">
+    <div className={styles.Person}>
       <p onClick={props.click}>
         I'm a {props.name} and I am {Math.floor(Math.random() * 30)} years old.
         I look {props.age} years old. :D
