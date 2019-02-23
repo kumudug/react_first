@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./App.module.css";
-import Person from "../Components/Persons/Person/Person";
+import Persons from "../Components/Persons/Persons";
+import Cockpit from "../Components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -42,44 +43,24 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePersonHandler(index)}
-                changed={event => this.nameChangeHandler(event, person.id)}>
-                Hobbies: sailing
-                </Person>
-            );
-          })}
-        </div>
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}>
+          </Persons>
       );
-
-      btnClass = styles.Red;
-    }
-
-    //let classes = ['red', 'bold'].join(' '); //what we get 'red bold'
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push(styles.red);
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push(styles.bold);
     }
 
     return (
       <div className={styles.App}>
-        <h1>First react app.</h1>
-        <p className={classes.join(" ")}>Dymanic Styling</p>
-        <button className={btnClass} onClick={this.togglPersonsHandler}>
-          Toggle Persons
-          </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglPersonsHandler}>
+        </Cockpit>
         {persons}
       </div>
     );
