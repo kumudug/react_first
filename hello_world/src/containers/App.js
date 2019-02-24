@@ -27,6 +27,15 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
   deletePersonHandler = personIndex => {
     //const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
@@ -75,7 +84,7 @@ class App extends Component {
         <Cockpit
           title={this.props.appTitle}
           showPersons={this.state.showPersons}
-          persons={this.state.persons}
+          personsLength={this.state.persons.length}
           clicked={this.togglPersonsHandler}>
         </Cockpit>
         {persons}
