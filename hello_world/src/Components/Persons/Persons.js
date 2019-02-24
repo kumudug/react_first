@@ -12,6 +12,7 @@ class Persons extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
         return (nextProps.persons !== this.props.persons);
+        //if you are checking all props you can use PureComponent instead of Component
     }
 
     getSnapshotBeforeUpdate(pervProps, prevState) {
