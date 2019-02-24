@@ -46,17 +46,18 @@ class App extends Component {
 
     if (this.state.showPersons) {
       persons = (
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangeHandler}>
-          </Persons>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler}>
+        </Persons>
       );
     }
 
     return (
       <div className={styles.App}>
         <Cockpit
+          title={this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglPersonsHandler}>

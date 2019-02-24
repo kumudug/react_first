@@ -18,7 +18,7 @@ const cockpit = (props) => {
 
     return (
         <div className={styles.Cockpit}>
-            <h1>First react app.</h1>
+            <h1>{props.title}</h1>
             <p className={classes.join(" ")}>Dymanic Styling</p>
             <button className={btnClass} onClick={props.clicked}>
                 Toggle Persons
