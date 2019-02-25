@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./Person.module.css";
 import PropTypes from 'prop-types';
-
+import AuthContext from '../../../context/auth-context';
 
 class Person extends Component {
   constructor(props) {
@@ -18,11 +18,14 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return (
       <div className={styles.Person} >
-        {this.props.isAuth ? <p>Authenticated!</p> : <p>Please log in!!!</p>}
-        <p>-{this.props.isAuth.toString()}-</p>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? <p>Authenticated!</p> : <p>Please log in!!!</p>
+          }
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>
           I'm a {this.props.name} and I am {Math.floor(Math.random() * 30)} years old.
-        I look {this.props.age} years old. :D 
+        I look {this.props.age} years old. :D
         </p>
         <p>{this.props.children}</p>
         <input
@@ -40,8 +43,7 @@ Person.propTypes = {
   click: PropTypes.func,
   name: PropTypes.string,
   age: PropTypes.number,
-  changed: PropTypes.func,
-  isAuth: PropTypes.bool
+  changed: PropTypes.func
 };
 
 export default Person;

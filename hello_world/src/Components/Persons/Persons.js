@@ -11,7 +11,7 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
-        return (nextProps.persons !== this.props.persons || nextProps.isAuthenticated !== this.props.isAuthenticated);
+        return (nextProps.persons !== this.props.persons);
         //if you are checking all props you can use PureComponent instead of Component
     }
 
@@ -37,8 +37,7 @@ class Persons extends Component {
                     name={person.name}
                     age={person.age}
                     click={() => this.props.clicked(index)}
-                    changed={event => this.props.changed(event, person.id)}
-                    isAuth={this.props.isAuthenticated}>
+                    changed={event => this.props.changed(event, person.id)}>
                     Hobbies: sailing
             </Person>
             );

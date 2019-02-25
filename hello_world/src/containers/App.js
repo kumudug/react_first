@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import Persons from "../Components/Persons/Persons";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import WithClass from "../hoc/WithClass";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
 
@@ -95,14 +96,21 @@ class App extends Component {
 
     return (
       <WithClass classes={styles.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          personsLength={this.state.persons.length}
-          clicked={this.togglPersonsHandler}
-          login={this.loginHandler}>
-        </Cockpit>
-        {persons}
+        <AuthContext.Provider
+          value={
+            {
+              authenticated: this.state.authenticated,
+              login: this.loginHandler
+            }
+          }>
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglPersonsHandler}>
+          </Cockpit>
+          {persons}
+        </AuthContext.Provider>
       </WithClass>
     );
     // let h1Element = React.createElement("h1", null, "First react app.");
