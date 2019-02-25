@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from "./Cockpit.module.css";
 
 const cockpit = (props) => {
+    const toggleBtnRef = useRef(null);
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect. Only runs first time');
@@ -14,6 +15,7 @@ const cockpit = (props) => {
         console.log('[Cockpit.js] useEffect');
         setTimeout(() => {
             alert('Saved data to cloud');
+            toggleBtnRef.current.click();
         }, 1000);
     }, [props.persons]);
 
@@ -35,7 +37,7 @@ const cockpit = (props) => {
         <div className={styles.Cockpit}>
             <h1>{props.title}</h1>
             <p className={classes.join(" ")}>Dymanic Styling</p>
-            <button className={btnClass} onClick={props.clicked}>
+            <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
                 Toggle Persons
           </button>
         </div>
