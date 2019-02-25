@@ -16,7 +16,8 @@ class App extends Component {
       { id: "01", name: "Max", age: 28 },
       { id: "02", name: "Adams", age: 29 },
       { id: "03", name: "Baker", age: 27 }
-    ]
+    ],
+    changeCounter: 0
   };
 
   static getDerivedStateFromProps(props, state){
@@ -58,7 +59,13 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    //When accessing the previous state to set next state use this functon syntax
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    });
   };
 
   togglPersonsHandler = event => {
