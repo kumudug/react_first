@@ -18,10 +18,12 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return (
       <div className={styles.Person} >
+        {this.props.isAuth ? <p>Authenticated!</p> : <p>Please log in!!!</p>}
+        <p>-{this.props.isAuth.toString()}-</p>
         <p onClick={this.props.click}>
           I'm a {this.props.name} and I am {Math.floor(Math.random() * 30)} years old.
-        I look {this.props.age} years old. :D
-      </p>
+        I look {this.props.age} years old. :D 
+        </p>
         <p>{this.props.children}</p>
         <input
           //ref={(inputEl) => {this.inputElement = inputEl}}
@@ -38,7 +40,8 @@ Person.propTypes = {
   click: PropTypes.func,
   name: PropTypes.string,
   age: PropTypes.number,
-  changed: PropTypes.func
+  changed: PropTypes.func,
+  isAuth: PropTypes.bool
 };
 
 export default Person;
